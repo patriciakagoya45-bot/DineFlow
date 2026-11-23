@@ -26,8 +26,22 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+// Connect to MongoDB before handling API requests
+app.use('/api', async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error('Database connection failed:', error.message);
 
-// Serve frontend files
+        res.status(500).json({
+            success: false,
+            message: 'Database connection failed'
+        });
+    }
+});
+
+// Serve frontend files locally
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // API routes
@@ -40,14 +54,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 
-// Homepage
-app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'Welcome to DineFlow Restaurant Management System',
-        status: 'Backend is running successfully'
-    });
-});
-
 // Health check
 app.get('/api/health', (req, res) => {
     res.status(200).json({
@@ -56,9 +62,17 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
+// Homepage
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'Welcome to DineFlow Restaurant Management System',
+        status: 'Backend is running successfully'
+    });
+});
 
 // Start local server
+const PORT = process.env.PORT || 5000;
+
 const startServer = async () => {
     try {
         console.log('Checking MongoDB configuration...');
@@ -79,9 +93,10 @@ const startServer = async () => {
     }
 };
 
-// Only start the server when running this file directly
+// Start only when running locally
 if (require.main === module) {
     startServer();
 }
 
+// Export Express app for Vercel
 module.exports = app;

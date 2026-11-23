@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | System Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="settings.js" defer></script>
+</head>
+<body data-auth-required="admin">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo"><h2>DineFlow<span>.</span></h2><p>Administration</p></div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="team.html">Staff</a>
+                <a href="settings.html" aria-current="page">Settings</a>
+            </nav>
+            <div class="sidebar-footer"><p>System administration</p></div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><div><h1>System Settings</h1><p>Restaurant identity and floor configuration.</p></div></header>
+            <section class="content-card">
+                <form id="settingsForm">
+                    <label for="restaurantName">Restaurant name</label>
+                    <input id="restaurantName" maxlength="100" required>
+                    <label for="tableCount">Number of tables</label>
+                    <input id="tableCount" type="number" min="1" max="500" required>
+                    <p id="settingsMessage" aria-live="polite"></p>
+                    <button type="submit">Save settings</button>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 
-const API = 'http://localhost:5000/api';
+const API = '/api';
 
 const staffForm = document.getElementById('staffForm');
 const staffTable = document.getElementById('staffTable');

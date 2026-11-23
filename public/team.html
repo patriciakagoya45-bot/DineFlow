@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Staff Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="staff.js" defer></script>
+</head>
+<body data-auth-required="management">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>DineFlow<span>.</span></h2>
+                <p>Restaurant Management</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="staff.html">New Order</a>
+                <a href="staff-dashboard.html">Staff Dashboard</a>
+                <a href="orders.html">Orders</a>
+                <a href="menu.html">Menu Items</a>
+                <a href="categories.html">Categories</a>
+                <a href="customers.html">Customers</a>
+                <a href="payments.html">Payments</a>
+                <a href="team.html" aria-current="page">Staff</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Restaurant Management System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Staff Management</h1>
+                    <p>Register and manage restaurant employees.</p>
+                </div>
+            </header>
+
+            <section class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Restaurant Staff</h2>
+                        <p>Manage employee accounts and responsibilities.</p>
+                    </div>
+                    <button id="addStaffBtn" type="button">Add Staff Member</button>
+                </div>
+
+                <div id="staffMessage" aria-live="polite"></div>
+                <form id="staffForm" hidden>
+                    <h2 id="formTitle">Register Staff Member</h2>
+                    <input type="hidden" id="staffId">
+
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" minlength="8">
+                    <small id="passwordHint">Password is required when registering a new employee.</small>
+
+                    <label for="role">Staff Role</label>
+                    <select id="role" required>
+                        <option value="waiter">Waiter</option>
+                        <option value="chef">Chef</option>
+                        <option value="manager">Manager</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+
+                    <label for="isActive">Account Status</label>
+                    <select id="isActive">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+
+                    <button type="submit">Save Staff Member</button>
+                    <button type="button" id="cancelBtn">Cancel</button>
+                </form>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th id="staffActionsHeader">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffTable">
+                            <tr><td colspan="5">Loading staff records...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

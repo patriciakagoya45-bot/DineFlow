@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Payment Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="payments.js" defer></script>
+</head>
+<body data-auth-required="payment">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>DineFlow<span>.</span></h2>
+                <p>Restaurant Management</p>
+            </div>
+
+           <nav class="sidebar-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="staff.html">New Order</a>
+    <a href="staff-dashboard.html">Staff Dashboard</a>
+    <a href="orders.html">Orders</a>
+    <a href="menu.html">Menu Items</a>
+    <a href="categories.html">Categories</a>
+    <a href="customers.html">Customers</a>
+    <a href="payments.html" aria-current="page">Payments</a>
+    <a href="team.html">Staff</a>
+    <a href="reports.html">Reports</a>
+        </nav>
+
+            <div class="sidebar-footer">
+                <p>Restaurant Management System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Payment Management</h1>
+                    <p>Record and monitor restaurant payments.</p>
+                </div>
+            </header>
+
+            <section class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Payment Records</h2>
+                        <p>Manage customer order payments.</p>
+                    </div>
+                    <button id="addPaymentBtn">Record Payment</button>
+                </div>
+
+                <div id="paymentMessage"></div>
+
+                <form id="paymentForm" hidden>
+                    <h2 id="formTitle">Record New Payment</h2>
+
+                    <label for="order">Select Order</label>
+                    <select id="order" required>
+                        <option value="">Choose Order</option>
+                    </select>
+
+                    <label for="amount">Amount (UGX)</label>
+                    <input type="number" id="amount" min="1" required>
+
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="">Choose a payment method</option>
+                        <option value="cash">Cash</option>
+                        <option value="mobile-money">Mobile Money</option>
+                        <option value="card">Card</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                    </select>
+
+                    <label for="transactionReference">
+                        Transaction Reference
+                    </label>
+                    <input type="text" id="transactionReference">
+
+                    <label for="paymentStatus">Payment Status</label>
+                    <select id="paymentStatus">
+                        <option value="pending">Pending</option>
+                        <option value="successful">Successful</option>
+                        <option value="failed">Failed</option>
+                        <option value="refunded">Refunded</option>
+                    </select>
+
+                    <button type="submit">Save Payment</button>
+                    <button type="button" id="cancelBtn">Cancel</button>
+                </form>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Reference</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentTable">
+                            <tr>
+                                <td colspan="6">Loading payments...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
