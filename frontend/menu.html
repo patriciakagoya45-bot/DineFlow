@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Menu Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="menu.js" defer></script>
+</head>
+<body data-auth-required="management">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>DineFlow<span>.</span></h2>
+                <p>Restaurant Management</p>
+            </div>
+
+            <nav class="sidebar-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="staff.html">New Order</a>
+    <a href="staff-dashboard.html">Staff Dashboard</a>
+    <a href="orders.html">Orders</a>
+    <a href="menu.html" aria-current="page">Menu Items</a>
+    <a href="categories.html">Categories</a>
+    <a href="customers.html">Customers</a>
+    <a href="payments.html">Payments</a>
+    <a href="team.html">Staff</a>
+    <a href="reports.html">Reports</a>
+</nav>
+
+            <div class="sidebar-footer">
+                <p>Restaurant Management System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Menu Management</h1>
+                    <p>Add, update and manage restaurant dishes.</p>
+                </div>
+            </header>
+
+            <section class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Restaurant Menu</h2>
+                        <p>All registered menu items</p>
+                    </div>
+                    <button id="addMenuBtn">Add Menu Item</button>
+                </div>
+
+                <div id="menuMessage"></div>
+
+                <form id="menuForm" hidden>
+                    <h2 id="formTitle">Add New Menu Item</h2>
+
+                    <input type="hidden" id="menuItemId">
+
+                    <label for="name">Dish Name</label>
+                    <input type="text" id="name" required>
+
+                    <label for="description">Description</label>
+                    <textarea id="description"></textarea>
+
+                    <label for="imageFile">Dish image</label>
+                    <input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <input type="hidden" id="image">
+                    <img id="imagePreview" class="menu-image-preview" alt="Dish preview" hidden>
+                    <small id="imageUploadMessage" aria-live="polite">JPG, PNG, WEBP or GIF, up to 5 MB.</small>
+
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                    </select>
+
+                    <label for="price">Price (UGX)</label>
+                    <input type="number" id="price" min="1" required>
+
+                    <label for="preparationTime">Preparation Time (minutes)</label>
+                    <input type="number" id="preparationTime" min="1" value="20">
+
+                    <label for="availability">Availability</label>
+                    <select id="availability">
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+
+                    <div>
+                        <button type="submit">Save Menu Item</button>
+                        <button type="button" id="cancelBtn">Cancel</button>
+                    </div>
+                </form>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Dish Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Preparation Time</th>
+                                <th>Availability</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuTable">
+                            <tr>
+                                <td colspan="7">Loading menu items...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

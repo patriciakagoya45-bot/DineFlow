@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Reports & Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+</head>
+<body data-auth-required="management">
+
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h2>DineFlow</h2>
+        <p>Restaurant Management</p>
+
+        <nav class="sidebar-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="staff.html">New Order</a>
+    <a href="staff-dashboard.html">Staff Dashboard</a>
+    <a href="orders.html">Orders</a>
+    <a href="menu.html">Menu Items</a>
+    <a href="categories.html">Categories</a>
+    <a href="customers.html">Customers</a>
+    <a href="payments.html">Payments</a>
+    <a href="team.html">Staff</a>
+    <a href="reports.html" aria-current="page">Reports</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1>Reports & Analytics</h1>
+                <p>Monitor restaurant performance and sales.</p>
+            </div>
+            <button onclick="loadReports()">Refresh Reports</button>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <h2 id="totalRevenue">UGX 0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Orders</h3>
+                <h2 id="totalOrders">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed Orders</h3>
+                <h2 id="completedOrders">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Orders</h3>
+                <h2 id="pendingOrders">0</h2>
+            </div>
+        </section>
+
+        <section class="report-section">
+            <h2>Sales Performance – Last 7 Days</h2>
+            <div id="salesChart" class="sales-chart"></div>
+        </section>
+
+        <section class="report-section">
+            <h2>Best-Selling Menu Items</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Menu Item</th>
+                            <th>Quantity Sold</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bestSellingTable">
+                        <tr><td colspan="3">Loading reports...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="report-section">
+            <h2>Payment Method Summary</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Payment Method</th>
+                            <th>Successful Payments</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentSummary">
+                        <tr><td colspan="3">Loading reports...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="reports.js"></script>
+</body>
+</html>

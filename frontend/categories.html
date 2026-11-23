@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Category Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="categories.js" defer></script>
+</head>
+<body data-auth-required="management">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>DineFlow<span>.</span></h2>
+                <p>Restaurant Management</p>
+            </div>
+
+<nav class="sidebar-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="staff.html">New Order</a>
+    <a href="staff-dashboard.html">Staff Dashboard</a>
+    <a href="orders.html">Orders</a>
+    <a href="menu.html">Menu Items</a>
+    <a href="categories.html" aria-current="page">Categories</a>
+    <a href="customers.html">Customers</a>
+    <a href="payments.html">Payments</a>
+    <a href="team.html">Staff</a>
+    <a href="reports.html">Reports</a>
+</nav>
+
+
+            <div class="sidebar-footer">
+                <p>Restaurant Management System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Category Management</h1>
+                    <p>Organise your restaurant menu into categories.</p>
+                </div>
+            </header>
+
+            <section class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Food Categories</h2>
+                        <p>Manage your restaurant categories</p>
+                    </div>
+                    <button id="addCategoryBtn">Add Category</button>
+                </div>
+
+                <div id="categoryMessage"></div>
+
+                <form id="categoryForm" hidden>
+                    <h2 id="formTitle">Add New Category</h2>
+
+                    <input type="hidden" id="categoryId">
+
+                    <label for="name">Category Name</label>
+                    <input type="text" id="name" required>
+
+                    <label for="description">Description</label>
+                    <textarea id="description"></textarea>
+
+                    <label for="isActive">Status</label>
+                    <select id="isActive">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+
+                    <button type="submit">Save Category</button>
+                    <button type="button" id="cancelBtn">Cancel</button>
+                </form>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTable">
+                            <tr>
+                                <td colspan="4">Loading categories...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Customer Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="customers.js" defer></script>
+</head>
+<body data-auth-required="management">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>DineFlow<span>.</span></h2>
+                <p>Restaurant Management</p>
+            </div>
+
+            <nav class="sidebar-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="staff.html">New Order</a>
+    <a href="staff-dashboard.html">Staff Dashboard</a>
+    <a href="orders.html">Orders</a>
+    <a href="menu.html">Menu Items</a>
+    <a href="categories.html">Categories</a>
+    <a href="customers.html" aria-current="page">Customers</a>
+    <a href="payments.html">Payments</a>
+    <a href="team.html">Staff</a>
+    <a href="reports.html">Reports</a>
+</nav>
+
+            <div class="sidebar-footer">
+                <p>Restaurant Management System</p>
+                <small>Version 1.0</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Customer Management</h1>
+                    <p>Register and manage restaurant customers.</p>
+                </div>
+            </header>
+
+            <section class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Registered Customers</h2>
+                        <p>Customer information and loyalty records</p>
+                    </div>
+                    <button id="addCustomerBtn">Add Customer</button>
+                </div>
+
+                <div id="customerMessage"></div>
+
+                <form id="customerForm" hidden>
+                    <h2 id="formTitle">Register New Customer</h2>
+
+                    <input type="hidden" id="customerId">
+
+                    <label for="name">Customer Name</label>
+                    <input type="text" id="name" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email">
+
+                    <label for="address">Address</label>
+                    <textarea id="address"></textarea>
+
+                    <label for="loyaltyPoints">Loyalty Points</label>
+                    <input type="number" id="loyaltyPoints" min="0" value="0">
+
+                    <button type="submit">Save Customer</button>
+                    <button type="button" id="cancelBtn">Cancel</button>
+                </form>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Loyalty Points</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTable">
+                            <tr>
+                                <td colspan="6">Loading customers...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

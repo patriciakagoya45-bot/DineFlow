@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | New Order</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pos.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="pos.js" defer></script>
+</head>
+<body class="pos-page" data-account-type="staff" data-auth-required="service">
+    <div class="page-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark"><span></span></div>
+                <div class="brand-name">POSPRO</div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">Main Menu</div>
+                <nav>
+                    <a href="staff-dashboard.html" class="nav-item">Dashboard</a>
+                    <a href="staff.html" class="nav-item active" aria-current="page">New Order</a>
+                    <a href="orders.html" class="nav-item">Orders</a>
+                    <a href="payments.html" class="nav-item">Payments</a>
+                </nav>
+            </div>
+
+            <div class="nav-section management">
+                <div class="nav-label">Management</div>
+                <nav>
+                    <a href="menu.html" class="nav-item" data-management-only>Menu Items</a>
+                    <a href="categories.html" class="nav-item" data-management-only>Categories</a>
+                    <a href="reports.html" class="nav-item" data-management-only>Reports</a>
+                </nav>
+            </div>
+
+            <div class="nav-section support">
+                <div class="nav-label">Support</div>
+                <nav>
+                    <a href="customers.html" class="nav-item" data-management-only>Customers</a>
+                    <a href="team.html" class="nav-item" data-management-only>Staff</a>
+                    <a href="reports.html" class="nav-item" data-management-only>Help & Reports</a>
+                </nav>
+            </div>
+
+            <div class="staff-card">
+                <div class="avatar"></div>
+                <div class="staff-meta">
+                    <strong>Fay Stephens</strong>
+                    <span>Cashier</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="dashboard">
+            <header class="top-bar">
+                <div class="crumbs">Main Menu <span>/</span> Order</div>
+                <a class="top-title" href="orders.html">View Orders</a>
+            </header>
+
+            <div class="alert" id="stockAlert" hidden>
+                <span class="alert-icon">!</span>
+                <p id="stockAlertText"></p>
+                <button class="close-alert" aria-label="Close">×</button>
+            </div>
+            <div id="posMessage" aria-live="polite"></div>
+
+            <div class="content-grid">
+                <section class="left-panel">
+                    <div class="section-head">
+                        <h2>Order List</h2>
+                        <button class="ghost-btn" id="clearCartBtn" type="button">Clear order</button>
+                    </div>
+
+                    <div class="pill-row" id="categoryFilters" aria-label="Filter menu by category"></div>
+
+                    <div class="menu-header">
+                        <h3>Order Menu</h3>
+                        <label class="search-box">
+                            <span>⌕</span>
+                            <input type="search" placeholder="Search menu" aria-label="Search menu">
+                        </label>
+                    </div>
+
+                    <div class="product-grid" id="productGrid">
+                        <p class="empty-menu">Loading your menu...</p>
+                    </div>
+                </section>
+
+                <aside class="right-panel">
+                    <div class="summary-header">
+                        <h3>New Order</h3>
+                        <a class="close-summary" href="orders.html" aria-label="Open orders">×</a>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="customerSelect">Customer</label>
+                        <select id="customerSelect">
+                            <option value="">Select a customer</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="orderType">Order type</label>
+                        <select id="orderType">
+                            <option value="dine-in">Dine in</option>
+                            <option value="takeaway">Takeaway</option>
+                            <option value="delivery">Delivery</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group" id="tableField">
+                        <label for="tableNumber">Table</label>
+                        <input id="tableNumber" type="text" inputmode="numeric" placeholder="Table number">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="guestCount">Guests</label>
+                        <input id="guestCount" type="number" min="1" value="1" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="paymentMethod">Payment method</label>
+                        <select id="paymentMethod" required>
+                            <option value="">Choose a payment method</option>
+                            <option value="cash">Cash</option>
+                            <option value="mobile-money">Mobile money</option>
+                            <option value="card">Card</option>
+                            <option value="bank-transfer">Bank transfer</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="orderNotes">Special instructions</label>
+                        <textarea id="orderNotes" rows="2" placeholder="Allergies or preparation requests"></textarea>
+                    </div>
+
+                    <div class="order-items" id="cartItems">
+                        <p class="empty-cart">Add dishes from the menu to start an order.</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="summary-row"><span>Subtotal</span><strong id="subtotalAmount">UGX 0</strong></div>
+                        <div class="summary-row total"><span>Total Amount</span><strong id="totalAmount">UGX 0</strong></div>
+                    </div>
+
+                    <button class="cta-btn" id="createOrderBtn" type="button">Create Order</button>
+                </aside>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

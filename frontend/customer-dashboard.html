@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Customer Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pos.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="auth.js" defer></script>
+    <script src="pos.js" defer></script>
+    <script src="customer-dashboard.js" defer></script>
+</head>
+<body class="pos-page customer-page" data-account-type="customer" data-auth-required="customer">
+    <div class="page-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark"><span></span></div>
+                <div class="brand-name">DINEFLOW</div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">Customer</div>
+                <nav>
+                    <a href="#order-menu" class="nav-item active" aria-current="page">Order Food</a>
+                    <a href="#my-orders" class="nav-item">My Orders</a>
+                    <a href="#my-profile" class="nav-item">My Profile</a>
+                    <button type="button" class="nav-item logout-link" data-customer-logout>Log out</button>
+                </nav>
+            </div>
+            <div class="staff-card">
+                <div class="avatar"></div>
+                <div class="staff-meta">
+                    <strong id="customerName">Customer</strong>
+                    <span>Customer account</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="dashboard customer-dashboard">
+            <header class="top-bar">
+                <div>
+                    <div class="crumbs">Customer <span>/</span> Order Food</div>
+                    <h1 id="customerGreeting">Welcome</h1>
+                </div>
+                <div class="top-title">Your DineFlow</div>
+            </header>
+
+            <div id="posMessage" aria-live="polite"></div>
+
+            <div class="content-grid">
+                <section class="left-panel" id="order-menu">
+                    <div class="section-head">
+                        <h2>Order Menu</h2>
+                        <button class="ghost-btn" id="clearCartBtn" type="button">Clear order</button>
+                    </div>
+                    <div class="pill-row" id="categoryFilters" aria-label="Filter menu by category"></div>
+                    <div class="menu-header">
+                        <h3>Available dishes</h3>
+                        <label class="search-box">
+                            <span>⌕</span>
+                            <input type="search" placeholder="Search menu" aria-label="Search menu">
+                        </label>
+                    </div>
+                    <div class="product-grid" id="productGrid">
+                        <p class="empty-menu">Loading your menu...</p>
+                    </div>
+                </section>
+
+                <aside class="right-panel">
+                    <div class="summary-header"><h3>Your order</h3></div>
+                    <div class="field-group">
+                        <label for="orderType">Order type</label>
+                        <select id="orderType">
+                            <option value="takeaway">Takeaway</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="dine-in">Dine in</option>
+                        </select>
+                    </div>
+                    <div class="field-group" id="tableField" hidden>
+                        <label for="tableNumber">Table number</label>
+                        <input id="tableNumber" type="text" inputmode="numeric" placeholder="Table number">
+                    </div>
+                    <div class="field-group">
+                        <label for="guestCount">Guests</label>
+                        <input id="guestCount" type="number" min="1" value="1" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="paymentMethod">Payment method</label>
+                        <select id="paymentMethod" required>
+                            <option value="">Choose a payment method</option>
+                            <option value="cash">Cash</option>
+                            <option value="mobile-money">Mobile money</option>
+                            <option value="card">Card</option>
+                            <option value="bank-transfer">Bank transfer</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="orderNotes">Special instructions</label>
+                        <textarea id="orderNotes" rows="2" placeholder="Allergies or preparation requests"></textarea>
+                    </div>
+                    <div class="order-items" id="cartItems">
+                        <p class="empty-cart">Add dishes from the menu to start an order.</p>
+                    </div>
+                    <div class="summary-box">
+                        <div class="summary-row"><span>Subtotal</span><strong id="subtotalAmount">UGX 0</strong></div>
+                        <div class="summary-row total"><span>Total Amount</span><strong id="totalAmount">UGX 0</strong></div>
+                    </div>
+                    <button class="cta-btn" id="createOrderBtn" type="button">Place Order</button>
+                </aside>
+            </div>
+
+            <section class="customer-order-history" id="my-orders">
+                <div class="history-heading">
+                    <div>
+                        <h2>My Orders</h2>
+                        <p>Follow order status and see which staff member served you.</p>
+                    </div>
+                    <button id="refreshCustomerOrders" type="button">Refresh</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Dishes</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Staff member</th>
+                                <th>Placed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerOrders">
+                            <tr><td colspan="7">Loading your orders...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="customer-order-history" id="my-profile">
+                <div class="history-heading">
+                    <div>
+                        <h2>My Profile</h2>
+                        <p>Update the contact details used for your orders.</p>
+                    </div>
+                </div>
+                <form id="customerProfileForm">
+                    <label for="profileName">Full name</label>
+                    <input id="profileName" type="text" autocomplete="name" required>
+                    <label for="profilePhone">Phone number</label>
+                    <input id="profilePhone" type="tel" autocomplete="tel" required>
+                    <label for="profileAddress">Address</label>
+                    <input id="profileAddress" type="text" autocomplete="street-address">
+                    <button type="submit">Save profile</button>
+                </form>
+                <div id="profileMessage" aria-live="polite"></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
